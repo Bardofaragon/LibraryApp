@@ -2,7 +2,7 @@
 %-------------------------------------- COMIENZA descripción del caso de uso.
 
 	\begin{UseCase}{CU12}{Apartar Libro}{
-		El objetivo es describir la funcionalidad del sistema donde se podrá apartar un libro cuando este no este disponible, para que un libro no este disponible quiere decir que otro Usuario lo tiene, el apartado genera una orden para que el pueda recogerlo al estar disponible nuevamente y solo puede existir una orden para un libro, el libro debe existir en la biblioteca para ser apartado, para que de esta manera el usuario que aparte tenga la seguridad de que al llegar el libro a la biblioteca pueda ir a recogerlo y hacer uso de el. Siempre y cuando el usuario este registrado. Puede haber mas de un libro para poder ser prestado pero solo se considera el primer caso cuando no existe ninguno disponible. Pueden extistir libros en la biblioteca pero no pueden ser prestados como Libros Viejos, Libros Maltratados, etc. El usuario registrado debe estar limpio de multas y penalizaciones. El usuario debera asistir a la biblioteca a recoger el libro cuando este este disponible. El sistema envia un correo cuando tenga 1 libro disponible.
+		El objetivo es describir la funcionalidad del sistema donde se podrá apartar un libro cuando este no este disponible, para que un libro no este disponible quiere decir que otro alumno lo tiene, el apartado genera una orden para que el pueda recogerlo al estar disponible nuevamente y solo puede existir una orden para un libro, el libro debe existir en la biblioteca para ser apartado, para que de esta manera el alumno que aparte tenga la seguridad de que al llegar el libro a la biblioteca pueda ir a recogerlo y hacer uso de el. Siempre y cuando el alumno este registrado. Puede haber mas de un libro para poder ser prestado pero solo se considera el primer caso cuando no existe ninguno disponible. Pueden extistir libros en la biblioteca pero no pueden ser prestados como Libros Viejos, Libros Maltratados, etc. El alumno registrado debe estar limpio de multas y penalizaciones. El alumno debera asistir a la biblioteca a recoger el libro cuando este este disponible. El sistema envia un correo cuando tenga 1 libro disponible.
 	}
 		\UCitem{Versión}{0.2}
 		\UCitem{Actor}{Alumno}
@@ -10,26 +10,44 @@
 		\UCitem{Propósito}{Generar una orden de apartado de libro para obtener un libro al volver a estar disponible. }
 		\UCitem{Entradas}{
 		\begin{itemize}
-			\item Nombre del Usuario
-			\item Id del Usuario
+			\item Nombre del Alumno
+			\item Id del Alumno
 			\item Fecha del Día Actual
 			\item Nombre de Libro Requerido
 		\end{itemize}		
 		}
-		\UCitem{Salidas}{Orden de Apartado de Libro. Que contendrá: id de orden de apartado, fecha del día en que se hizo la orden, nombre de quien hizo la orden, nombre del libro, autor, id del libro, medios de contacto del alumno.}
+		
+		\UCitem{Salidas}{Orden de Apartado de Libro. Que contendrá: 
+		\begin{itemize}
+			\item Id de orden de apartado
+			\item Fecha del día en que se hizo la orden
+			\item Nombre de quien hizo la orden
+			\item Id del libro
+			\item Nombre del libro
+			\item Autor del libro
+			\item Medios de contacto del alumno.
+		\end{itemize}
+		Un correo para el Alumno y otro para el Administrador que contendrá
+		\begin{itemize}
+			\item Los datos de la orden de apartado.
+			\item Los datos del libro.
+		\end{itemize}
+		Actualzación de los datos de la tabla LibrosApartados de la base de datos con la orden de apartado correspondiente.
+		}
 		
 		\UCitem{Precondiciones}{ 
 			\begin{itemize}
 				\item Interna: Que exista el libro. 
 				\item Interna: Que el libro no esté disponible.
 				\item Interna: Que el libro no esté apartado ya.
-				\item Interna: Que el usuario este registrado en la base de datos.
+				\item Interna: Que el Alumno este registrado en la base de datos.
 				\item Interna: Que exista catálogo de ordenes de apartado.
 			\end{itemize}
 		}
-		\UCitem{Postcondiciones}{Se actualiza la tabla LibrosApartados de la base de datos con la orden de apartado correspondiente.}
+		\UCitem{Postcondiciones}{Cita de apartado generada}
 		\UCitem{Tipo}{Primario. Extiende el caso de uso \UCref{5}}
-		\UCitem{Autor}{López Orozco Diego Efraín \newline Luis Gerardo Jimenez}
+		\UCitem{Autor}{López Orozco Diego \newline Luis Gerardo Jimenez}
+		\UCitem{Estado}{Aprobado}
 	\end{UseCase}
 		%-------------------------------------- COMIENZA descripción Trayectoria Principal
 	\begin{UCtrayectoria}{Principal}
@@ -81,7 +99,7 @@
 		\end{UCtrayectoriaA}
 		
 		\begin{UCtrayectoriaA}{F}{El email no se puedo enviar}
-			\UCpaso[\UCsist] Muestra el \MSGref{E6}{Libro Apartado}. Notificando que no se pudo enviar el correo al usuario.
+			\UCpaso[\UCsist] Muestra el \MSGref{E6}{Libro Apartado}. Notificando que no se pudo enviar el correo al alumno.
 			\UCpaso[\UCactor] Oprime el botón \IUbutton{Ok}.
 			\UCpaso[\UCsist] Regresa al paso 12 de la trayectoria principal.
 		\end{UCtrayectoriaA}
