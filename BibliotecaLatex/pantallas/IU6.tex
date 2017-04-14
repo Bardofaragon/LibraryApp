@@ -2,12 +2,13 @@
 \subsection{IU6 Pantalla Cambio de Estado de un Libro}
 
 \subsubsection{Objetivo}
-	Pantalla de Inicio, para registrar el estado de un libro en concreto.
+	Pantalla principal para registrar el cambio de disponibilidad y estado físico de un libro.
+
 
 \subsubsection{Diseño}
-	Esta pantalla aparece al iniciar el sistema.  \\\\
-	Si en la base de datos no algún registro de citas agendadas, la parte de consultar estará inhabilitada. 
-	Esta pantalla aparece despues del proceso de entrega y prestamo de un libro.
+	Esta pantalla aparece después del realizar \UCref{CU09}.  \\\\
+	Si en la base de datos no existe algún registro de citas agendadas, la parte de consultar estará inhabilitada. 
+	Esta pantalla aparece después del proceso de entrega y prestamo de un libro.
 
 \IUfig[.7]{CU6/ESTADOS}{UI6}{Pantalla para registrar estado de un libro}
 
@@ -25,7 +26,7 @@
 
 \subsubsection{Comandos} 
 \begin{itemize}
-	\item \IUbutton{Buscar Libro}: Solicita el ICBN de un libro para agregar estado del libro.
+	\item \IUbutton{Buscar Libro}: Solicita el ISBN de un libro para agregar estado del libro.
 	\item \IUbutton{Continuar}: Realiza el registro del estado del libro.
 \end{itemize}
 
