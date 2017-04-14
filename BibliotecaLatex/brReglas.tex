@@ -191,16 +191,15 @@
 
 \begin{BussinesRule}{RN30}{Disponibilidad de un libro.} 
 	\BRitem[Tipo:] Restricción (validación).
-	%\BRitem[Autor:] Cortés Pérez Edy
+	%\BRitem[Autor:] Bautista Rosales Mauricio
 	\BRitem[Descripción:]La Disponibilidad y el estado físico  determinan es “Estado Actual “ el cual se encuentra el libro.
 Disponibilidad:
 
 		\begin{itemize} 
-			\item En Uso : Hace referencia a  que se está utilizando en la biblioteca para consulta
 			\item Disponible : El libro se encuentra disponible para su préstamo
 			\item No disponible: El libro se encuentra en préstamo.
 		\end{itemize}
-Estado Físico: Son las condiciones físicas del libro en las que se encuentra.
+Estado Físico: Son las condiciones físicas del libro en las que se encuentra, estas pueden variar, las principales son :
 	\begin{itemize} 
 			\item Sucio
 			\item Con Marcas 
@@ -215,7 +214,7 @@ Estado Físico: Son las condiciones físicas del libro en las que se encuentra.
 
 \begin{BussinesRule}{RN31}{Estado de un libro.} 
 	\BRitem[Tipo:] Restricción (validación).
-	%\BRitem[Autor:] Cortés Pérez Edy
+	%\BRitem[Autor:] Bautista Rosales Mauricio
 	\BRitem[Descripción:]La disponibilidad de un libro cambia con base a la siguientes reglas (Ultimo Estado -)  Estado Actual) :
 \begin{itemize} 
 			\item Disponible -)  En Uso | No Disponible
@@ -228,7 +227,7 @@ Estado Físico: Son las condiciones físicas del libro en las que se encuentra.
 
 \begin{BussinesRule}{RN32}{Número de Intentos para Registrar Estado.} 
 	\BRitem[Tipo:] Restricción (validación).
-	%\BRitem[Autor:] Cortés Pérez Edy
+	%\BRitem[Autor:] Bautista Rosales Mauricio
 	\BRitem[Descripción:]El número máximo de intentos para registrar un estado de un libro  son 3, al exceder del número máximo se debe esperar 10  minutos para volver a intentarlo.
 \end{BussinesRule}
 
