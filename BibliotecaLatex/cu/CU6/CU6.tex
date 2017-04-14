@@ -2,7 +2,7 @@
 %-------------------------------------- COMIENZA descripción del caso de uso.
 
 	\begin{UseCase}{CU06}{Registrar Cambio de Estado de un Libro}{
-		Proceso que se realiza después de la devolución  de un libro por parte del usuario a la biblioteca, en esta transición el libro adquiere un nuevo estado que lo establece las  características importantes descritos por la \BRref{RN30}.
+		Cuando un Usuario realiza  la devolución de un libro que previamente le fue prestado, el libro adquiere  una nueva disponibilidad, también si es necesario se registra un cambio en su estado físico (condición física del libro en el momento de la entrega), si las condiciones lo ameritan puede surgir una multa.
 	}
 		\UCitem{Versión}{0.1}
 		\UCitem{Actor}{Administrador bibliotecario}
@@ -12,16 +12,28 @@
 		\UCitem{Precondiciones}{ 
 			\begin{itemize}
 			\item El Libro  debe existir en los registros.
- 			\item  Se realizó el proceso de préstamo previamente \UCref(CU09)o se realizó en proceso de 						devolución  \UCref(CU07) para identificar el libro para realizar el cambio de estado.
+ 			\item  Se realizó el proceso de préstamo previamente \UCref{CU09}o se realizó en proceso de 						devolución  \UCref{CU07} para identificar el libro para realizar el cambio de estado.
 			\end{itemize}
 		}
 		\UCitem{Postcondiciones}{El cambio en la disponibilidad de un libro o libros asociados a un préstamo  si existe un cambio en el estado físico  este  se asocia al cambio de disponibilidad en una fecha y hora específica.}
-		\UCitem{Autor}{BAUTISTA ROSALES MAURICIO}
+		\UCitem{Autor}{
+			\begin{itemize}
+				\item BAUTISTA ROSALES MAURICIO
+				\item Salgado Carlos
+			\end{itemize}
+			}
+		\UCitem{Revisión}{
+			\begin{itemize}
+				\item Cortés Pérez Edy
+				\item Marín Gárcia Fernando
+			\end{itemize}
+			}
+		\UCitem{Estado}{En Revisión}
 	\end{UseCase}
 		%-------------------------------------- COMIENZA descripción Trayectoria Principal
 	\begin{UCtrayectoria}{Principal}
 
-	\UCpaso[\UCactor] El administrador realiza el proceso de préstamo de libro o devolución  \UCref(CU7) , \UCref(CU09).
+	\UCpaso[\UCactor] El administrador realiza el proceso de préstamo de libro o devolución \UCref{CU07} , \UCref{CU09}.
 	\UCpaso[\UCsist]   identifica si se trata de un préstamo o devolución con base a la regla de negocio \BRref{RN31}.
  	\UCpaso[\UCsist]  establece la disponibilidad actual con base a la regla de negocio  \BRref{RN31} .
 	\UCpaso[\UCsist]  Obtiene los estados físicos asociados al último cambio de disponibilidad que se realizó.
@@ -53,7 +65,7 @@
 		\begin{UCtrayectoriaA}{C}{Los cambios en los estados fiscos del libro ameritan una sanción. }
 			\UCpaso[\UCsist] Notifica que el usuario es acreedor de una sanción.
 			\UCpaso[\UCsist] El administrador presiona el botón \IUbutton{CONTINUAR}
-			\UCpaso[\UCsist] comienza \UCref(CU14)
+			\UCpaso[\UCsist] comienza \UCref{CU14}
 		\end{UCtrayectoriaA}
 	
 
