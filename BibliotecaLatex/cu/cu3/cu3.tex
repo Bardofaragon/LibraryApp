@@ -2,35 +2,25 @@
 %-------------------------------------- COMIENZA descripción del caso de uso.
 
 	\begin{UseCase}{CU03}{Generar Credencial}{
-		Generar una credencial en formato PDF para un usuario dado, pidiendo sus datos por medio de un 			formulario que recibe: 
+		Generar una credencial en formato PDF (sólo una por usuario), pidiendo en un formulario los siguientes datos: 
 		\begin{itemize}
-			\item Nombre 
-			\item Apellido paterno
-			\item Apellido materno
-			\item Teléfono
-			\item Fecha de emisión y la Fecha de expedición
-			\item Tipo de usuario
+			\item CURP
+			\item Fecha de emisión
 		\end{itemize}									
 	}
-		\UCitem{Versión}{0.4}
+		\UCitem{Versión}{1.0}
 		\UCitem{Actor}{Administrador}
 		\UCitem{Propósito}{Brindar al usuario una credencial que lo reconozca como miembro de la biblioteca para que pueda hacer uso de sus servicios. }
 		\UCitem{Entradas}{Usuario:
 		\begin{itemize}
-			\item Nombre [String]
-			\item Apellido Paterno [String]
-			\item Apellido Materno [String]
-			\item Teléfono [String]
-			\item Tipo de Usuario [String] 
+			\item CURP [String]
 			\item Fecha de Emision [Date] (dd/mm/aaaa)
-			\item Fecha de Expiración [Date] (dd/mm/aaaa)
 		\end{itemize}
 		}
 		\UCitem{Salidas}{El usuario obtiene su credencial}
 		\UCitem{Precondiciones}{ 
 			\begin{itemize}
-				\item El aspirante debe ya estar registrado en el sistema
-				\item El aspirante no deberá tener adeudos
+				\item El aspirante debe ya estar registrado en el sistema.
 			\end{itemize}
 		}
 		\UCitem{Postcondiciones}{
@@ -46,18 +36,24 @@
 	
 		%-------------------------------------- COMIENZA descripción Trayectoria Principal
 	\begin{UCtrayectoria}{Principal}
-	\UCpaso[\UCactor] El administrador busca y da click en la página principal en la pestaña "Generar credencial".
-	\UCpaso[\UCactor] El administrador ingresa los datos del usuario y valida la \BRref{RN15}{Campos llenos usuario}\Trayref{A} .Selecciona el botón:  \IUbutton{Generar Credencial} de la pantalla IGU1 \IUref{UI01}{Pantalla de Inicio}.	
+	\UCpaso[\UCactor] El administrador da click en la página principal en la pestaña "Generar credencial".
+	\UCpaso[\UCactor] El administrador ingresa el CURP del usuario y la fecha de emisión, después da click en el botón \IUbutton{Generar Credencial} de la pantalla IGU1 \IUref{UI01}{Pantalla de Inicio}.	
+	\UCpaso[\UCsist] Valida las siguientes reglas:
+	\begin{itemize}
+		\item \BRref{RN49}{Usuario sin credencial}\Trayref{A} .
+		\item \BRref{RN39}{Formato del CURP}\Trayref{B} .
+		\item \BRref{RN36}{Campos no nulos}\Trayref{C} .	
+	\end{itemize} 
 
-		\UCpaso[\UCsist] Se conecta a la BD para registrar los datos de la credencial, validando la \BRref{RN2}{Generar Credencial}  \Trayref{B}.
+		\UCpaso[\UCsist] Se conecta a la BD buscando la CURP ingresada para validar la \BRref{RN02}{Usuario no registrado} \Trayref{D}, si el usuario sí está registrado en el sistema, se registran los datos de la credencial [mostrados en el siguiente paso]. \Trayref{E} 
 		\UCpaso[\UCsist] Produce la credencial del usuario.El formato de la credencial es indistinto, pero debe tener los siguientes datos
 		\begin{itemize}
+			\item Número de usuario (autogenerado)
 			\item Nombre completo
 			\item Teléfono
-			\item Fecha de emisións
-			\item Fecha de expiración
+			\item Fecha de emisión
+			\item Fecha de expiración (autogenerado a 2 años posteriores a la fecha de emisión)
 			\item Un cuadro para la foto
-			
 		\end{itemize}		 
 		
 		\UCpaso[\UCsist] Envía al usuario el mensaje \MSGref{MSG01}{Operación realizada exitosamente}.
@@ -65,18 +61,29 @@
 
 		\end{UCtrayectoria}		
 %		%	-------------------------------------- COMIENZA descripción de las Trayectoria Alternativa.
-		\begin{UCtrayectoriaA}{A}{Campos nulos}
-			\UCpaso[\UCsist] Envía al usuario un mensaje \MSGref{E3}{Los campos no pueden estar vacios}
+		\begin{UCtrayectoriaA}{A}{Credencial única}
+			\UCpaso[\UCsist] Envía al usuario el mensaje "Sólo se puede generar credencial a los usuario que no cuenten con una credencial".
 			\UCpaso[\UCsist] El administrador da click en el botón \IUbutton{Aceptar}.
 		\end{UCtrayectoriaA}
 
-		\begin{UCtrayectoriaA}{B}{No se puede conectar a la Base de datos}
-			\UCpaso[\UCsist] Envía al usuario un mensaje \MSGref{E1}{Error al conectar la Base de datos}
+
+		\begin{UCtrayectoriaA}{B}{Formato del CURP}
+			\UCpaso[\UCsist] Envía al usuario el mensaje "CURP erróneo".
 			\UCpaso[\UCsist] El administrador da click en el botón \IUbutton{Aceptar}.
 		\end{UCtrayectoriaA}
 		
+		\begin{UCtrayectoriaA}{C}{Campos no nulos}
+			\UCpaso[\UCsist] Envía al usuario un mensaje \MSGref{E3}{Datos incompletos.Favor de completar todos los campos de entrada}
+			\UCpaso[\UCsist] El administrador da click en el botón \IUbutton{Aceptar}.
+		\end{UCtrayectoriaA}
 
+		\begin{UCtrayectoriaA}{D}{Generar credencial}
+			\UCpaso[\UCsist] Envía al usuario un mensaje \MSGref{E1}{Sólo se puede generar credencial a los usuarios dados de alta.}
+			\UCpaso[\UCsist] El administrador da click en el botón \IUbutton{Aceptar}.
+		\end{UCtrayectoriaA}
 		
-				
-
+		\begin{UCtrayectoriaA}{E}{Error en la conexión con la Base de datos}
+			\UCpaso[\UCsist] Envía al usuario un mensaje \MSGref{E1}{Error al conectar a la B.D}
+			\UCpaso[\UCsist] El administrador da click en el botón \IUbutton{Aceptar}.
+		\end{UCtrayectoriaA}
 %-------------------------------------- TERMINA descripción del caso de uso.
