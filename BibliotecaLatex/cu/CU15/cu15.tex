@@ -11,8 +11,13 @@
 				\item Castillo Huitron Sachiel
 			\end{itemize}	 
 		}
-		\UCitem{Revisa}{Hernandez }
-		\UCitem{Estado}{En revisión}
+		\UCitem{Revisa}{
+			\begin{itemize}
+				\item Hernández Flores Luis Ángel
+				\item Hernandez Aguirre Ezequiel Absalon
+			\end{itemize}		
+		 }
+		\UCitem{Estado}{Aprobado}
 		\UCitem{Actor}{Administrador}
 		\UCitem{Propósito}{Consultar los datos de los libros que se tengan registrados dentro del inventario de la biblioteca. }
 		\UCitem{Entradas}{Ninguna.}
@@ -20,16 +25,16 @@
 			Listado de los datos de libros registrados en el inventario. 
 			\begin{itemize}
 				\item ID: Cadena de caracteres; referencian al identificador único para cada libro. 
+				\item ISBN: Cadena de caracteres; referencian al ISBN del libro en cuestión. 
 				\item Titulo: Cadena de caracteres; 
-				\item Nombre del Autor: Cadena de caracterer: Ap. Paterno Ap. Materno, Nombre(s)
+				\item Nombre del Autor: Cadena de caracteres: Ap. Paterno Ap. Materno, Nombre(s)
 				\item Ciudad: Cadena de caracteres; 
 				\item País: Cadena de caracteres; 
 				\item Editorial: Cadena de caracteres; 
 				\item Edición: Cadena de caracteres; 
 				\item Año: Tipo de dato Date;
-				\item Tema: Cadena de caracteres; Corresponde al área del libro. 
 				\item Estado del libro: Cadena de caracteres; La condición en la que se encuentra el libro físicamente. 
-				\item Ubicación:  Cadena de caracteres; Hace referencia al estante asignado en la biblioteca. 
+				\item No. Existencias: Número entero; Indica el número de existencias del libro con las que cuenta la biblioteca.  
 			\end{itemize}		
 		}
 		\UCitem{Precondiciones}{ 
