@@ -1,20 +1,20 @@
 ## Core latex/pdflatex auxiliary files:
-*.aux
-*.lof
-*.lot
-*.fls
-*.out
-*.toc
-*.fmt
-*.fot
-*.cb
-*.cb2
-*.fdb_latexmk
-*.synctex
-*.synctex(busy)
-*.synctex.gz
-*.synctex.gz(busy)
-*.pdfsync
+BibliotecaLatex/*.aux
+BibliotecaLatex/*.lof
+BibliotecaLatex/*.lot
+BibliotecaLatex/*.fls
+BibliotecaLatex/*.out
+BibliotecaLatex/*.toc
+BibliotecaLatex/*.fmt
+BibliotecaLatex/*.fot
+BibliotecaLatex/*.cb
+BibliotecaLatex/*.cb2
+BibliotecaLatex/*.fdb_latexmk
+BibliotecaLatex/*.synctex
+BibliotecaLatex/*.synctex(busy)
+BibliotecaLatex/*.synctex.gz
+BibliotecaLatex/*.synctex.gz(busy)
+BibliotecaLatex/*.pdfsync
 
 #JAVA
 # Compiled class file
