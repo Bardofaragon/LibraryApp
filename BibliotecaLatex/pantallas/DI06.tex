@@ -1,0 +1,53 @@
+\newpage
+\subsection{DI06 Diagrama de clases y Secuencia}
+\subsubsection{Objetivo}
+Mostrar la secuencia que tendrá el CU06 en la parte de la programación y estructura que esta llevará.
+\subsection{Diagrama de Clases}	
+\IUfig[1]{CU6/DI06C}{CU06}{Diagrama de Clases}
+\subsubsection{Métodos}
+
+\subsubsection{RegistroEstado}
+	\begin{Citemize}
+		\item registrarEstado : obtiene los datos introducidos en la UI6, los cuales son los datos del estado Fisico del libro 
+	\end{Citemize}
+
+\subsubsection{ReglasNegocio}
+\begin{itemize}
+	\item RN47 : contiene la logica de la regla de negocios no. 47 la cual hace referencia a el Formato del ISBN del libro
+	\item RN50 : contiene la logica de la regla de negocios no. 50 la cual hace referencia a que los datos introducidos existan en la Base de Datos
+\end{itemize}
+
+\subsubsection{CargarInfo}
+	\begin{Citemize}
+		\item setInfoUI : obtiene la info que proviene de CU07 09 la cual hace referencia a el libro que se esta devolviendo o prestando
+	\end{Citemize}
+	
+\subsubsection{CU07 09}
+	\begin{Citemize}
+		\item CU07 09 : obtiene los datos introducidos en la UIINICIO
+	\end{Citemize}
+
+\subsubsection{LibroDAO}
+	\begin{Citemize}
+		\item getLibro : obtiene un objeto libro el cual contiene todos los datos referentes a un libro, estos datos son extraidos de la Base de Datos
+	\end{Citemize}
+	
+\subsubsection{estadoFisicoLibroDAO}
+	\begin{Citemize}
+		\item getEstadoFisico : obtine un objeto EstadoLibro el cual contiene los datos referentes a un Libro asi como su estado fisico de este y la fecha en la que se hace algun cambio en el estado del Libro, estos datos son extraidos de la Base de Datos
+		\item updateEstadoFisico : contiene la informacion actualizada de un objeto EstadoLibro la cual la enviara para que esta sea actualizada y se hagan los cambios en la Base de Datos
+	\end{Citemize}
+
+\subsubsection{EstadosDAO}
+	\begin{Citemize}
+		\item getEstados : utilizado para leer los datos correspondientes al estado fisico de un libro
+	\end{Citemize}
+	
+\subsubsection{UI6}
+	\begin{Citemize}
+		\item Interfaz que contiene los campos necesarios para introducir los datos de un Libro como lo son el ISBN y el ID, al igual que los datos referentes al Estado Fisico de un libro
+	\end{Citemize}
+	
+\subsection{Diagrama de Secuencia}
+
+\IUfig[1]{CU6/DI06S}{CU06}{Diagrama de Secuencia}
