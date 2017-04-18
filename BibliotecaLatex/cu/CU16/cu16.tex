@@ -8,20 +8,20 @@
 
 %\begin{UseCase}[archivo de imágen]{UCX}{Nombre del Caso de uso}{
 	\begin{UseCase}{CU16}{Registrar empleado}{
-		El administrador podrá registrar en el sistema a un nuevo empleado, con la finalidad de tener guardada la información de los trabajadores de la biblioteca para consulta y control de la misma. Lo hará introduciendo los datos del nuevo empleado: nombre completo, RCF, CURP, teléfono, email, dirección, el tipo de empleado y la duración de su contrato.
+		El administrador podrá registrar en el sistema a un nuevo empleado, con la finalidad de tener guardada la información de los trabajadores de la biblioteca para consulta y control de la misma. Lo hará introduciendo los datos del nuevo empleado: Nombre completo, RCF, CURP, teléfono, email, dirección, rol y la duración de su contrato.
 	}
-		\UCitem{Versión}{2.0}
+		\UCitem{Versión}{2.1}
 		\UCitem{Estado}{En revisión}
 		\UCitem{Actor}{Administrador.}
 		\UCitem{Propósito}{Almacenar en la base de datos los datos de todos los empleados de la biblioteca.}
-		\UCitem{Entradas}{Nombre, apellido paterno, apellido materno, CURP, RFC, telefono, email, tipo de empleado, duracion del contrato y dirección}
+		\UCitem{Entradas}{Nombre, Primer apellido, Segundo apellido, CURP, RFC, teléfono, email, Rol, duración del contrato y dirección}
 		\UCitem{Salidas}{
 			Registro en la base de datos junto con:
 			\begin{itemize}
 				\item El mensaje \MSGref{MASG1}{Operación realizada exitosamente.},
 				\item Mensaje \MSGref{E3}{Datos incompletos. Favor de completar todos los campos de entrada.},
 				\item Mensaje \MSGref{MASG6}{Confirma que los datos ingresados sean correctos.},
-				\item Mensaje \MSGref{E5}{Registro ya existente en el catalogo.} y
+				\item Mensaje \MSGref{E5}{Registro ya existente en el catálogo.} y
 				\item Mensaje \MSGref{E1}{Error al conectar a la BD.}
 			\end{itemize}
 		}
@@ -49,13 +49,13 @@
 		\UCpaso[\UCactor] Llena todos los campos que son: 
 			\begin{itemize}
 				\item Nombre.
-				\item Apellido paterno.
-				\item Apellido materno.
+				\item Primer apellido.
+				\item Segundo apellido.
 				\item RFC.
 				\item CURP.
-				\item Telefono.
+				\item Teléfono.
 				\item Email.
-				\item Tipo de empleado.
+				\item Rol.
 				\item Duración del contrato.
 				\item Dirección.
 			\end{itemize} 
@@ -65,13 +65,13 @@
 
 		\UCpaso Verifica los campos de los datos con base a la \BRref{RN36}{Ningún campo nulo.} \Trayref{A}.
 
-		\UCpaso Valida que los datos ingresados cumplan los formatos con base a las Reglas de Negocio: 
+		\UCpaso Válida que los datos ingresados cumplan los formatos con base a las Reglas de Negocio: 
 				
 			\begin{itemize}
 				\item	\BRref{RN37}{Formato del nombre} 
 				\item	\BRref{RN38}{Formato del RFC} 
 				\item	\BRref{RN39}{Formato del CURP} 
-				\item	\BRref{RN40}{Formato del telefono} 
+				\item	\BRref{RN40}{Formato del teléfono} 
 				\item	\BRref{RN45}{Formato del email} 
 				\item	\BRref{RN41}{Formato de la dirección} 
 				\item	\BRref{RN44}{Formato del contrato} 
@@ -80,11 +80,15 @@
 		
 		\UCpaso Se conecta a la base de datos. \Trayref{D}.
 
-		\UCpaso Valida que el empleado no halla sido registrado previamente con base a \BRref{RN35}{Empleado registrado} \Trayref{C}.
+		\UCpaso Válida que el empleado no halla sido registrado previamente con base a \BRref{RN35}{Empleado registrado} \Trayref{C}.
 
-		\UCpaso El sistema guardara un registro en la bitacora en donde almacenara la fecha del servidor y guardara  al nuevo empleado.
+		\UCpaso El sistema guardará un registro en la bitácora en donde almacenará la fecha del servidor y guardará al nuevo empleado.
 
-		\UCpaso Muestra el Mensaje \MSGref{MASG1}{Operación realizada exitosamente.}
+		\UCpaso Muestra el Mensaje \MSGref{MASG1}{Operación realizada exitósamente.}
+
+		\UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar}.
+
+		\UCpaso Redirige a la \IUref{UI16.1}{Pantalla Registrar empleado}.
 		
 
 	\end{UCtrayectoria}
@@ -116,7 +120,7 @@
 %%------------Trayectoria C-----------------%%
 		\begin{UCtrayectoriaA}{C.}{El empleado ya esta registrado}
 
-			\UCpaso Muestra el Mensaje \MSGref{E5}{Registro ya existente en el catalogo.}
+			\UCpaso Muestra el Mensaje \MSGref{E5}{Registro ya existente en el catálogo.}
 			\UCpaso[\UCactor] Oprime el botón \IUbutton{Aceptar}.
 			\UCpaso Continua en el paso \ref{CU16RegistrarEmpleado} del \UCref{CU16}.
 
