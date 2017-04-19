@@ -1,39 +1,36 @@
 \newpage
-\subsection{IU6 Pantalla Cambio de Estado de un Libro}
+\subsection{UI6 Estado Físico}
 
 \subsubsection{Objetivo}
-	Pantalla de Inicio, para registrar el estado de un libro en concreto.
+	Pantalla principal para registrar un estado físico a un libro.
 
 \subsubsection{Diseño}
-	Esta pantalla aparece al iniciar el sistema.  \\\\
-	Si en la base de datos no algún registro de citas agendadas, la parte de consultar estará inhabilitada. 
-	Esta pantalla aparece despues del proceso de entrega y prestamo de un libro.
+	Esta Interfaz se construye consultado previamente los posibles estados que puede tener un libro.
 
-\IUfig[.7]{CU6/ESTADOS}{UI6}{Pantalla para registrar estado de un libro}
+\IUfig[.7]{CU6/ESTADOS}{EstadoFisico}{Pantalla para registrar estado de un libro}
 
 \subsubsection{Salidas}
 	\begin{Citemize}
-		\item Mensaje de registro exitoso \MSGref{MSG1}. 
+		\item Mensaje de registro exitoso:  "Éxito en la Operación".
+		\item Mensaje de Error : “No se encontró en el registro “ 
 	\end{Citemize}
 	
 \subsubsection{Entradas}
 	\begin{Citemize}
-		\item ISBN-ID : Identificador del libro
-		\item DISPONIBILIDAD : Describe la disponibilidad de un libro.
-		\item ESTADOS FISICOS : Estados fisicos que tiene el libro.
+		\item Id : Identificador del libro
+		\item Estado Físico : Estado fisico que presenta el libro.
 	\end{Citemize}
 
 \subsubsection{Comandos} 
 \begin{itemize}
-	\item \IUbutton{Buscar Libro}: Solicita el ICBN de un libro para agregar estado del libro.
-	\item \IUbutton{Continuar}: Realiza el registro del estado del libro.
+	\item \IUbutton{Registra}: Comienza Registro de Estado.
+	\item \IUbutton{OK}: Valida el resultado final de la operación.
+	\item \IUbutton{Aceptar}: Aceptar el resultado de la operación.
 \end{itemize}
 
 \subsubsection{Mensajes}
 	\begin{Citemize}
-		\item {\bf  MSG6} ¿Los Datos Son Correctos ?
-		\item {\bf  MSG1} El registro fue Exitoso
-		\item {\bf  MSG7} Intentalo nuevamente
-		\item {\bf  [E7]} Número Máximo de Intentos, Intentalo más Tarde
+		\item {\bf  MSG1} Éxito en la Operación
 		 \item {\bf [E4]} El libro no Existe
 	\end{Citemize}
+
